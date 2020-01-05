@@ -1,0 +1,48 @@
+<div class="btn-back"><%= link_to '< Back', events_path %></div>
+<script type="text/javascript">
+    function initMap() {
+        
+        // var test ={lat: <%= @latitude %>, lng: <%= @longitude %>};
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            // center: {lat: 35.6812, lng: 139.7671},
+            center: {lat: <%= @event.latitude%>, lng: <%= @event.longitude%>},
+            mapTypeControl: false,
+            streetViewControl: false
+        });
+        var transitLayer = new google.maps.TransitLayer();
+        transitLayer.setMap(map);
+
+        var contentString = '<%= @event.title %>';
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+        });
+
+        var marker = new google.maps.Marker({
+            position: {lat: <%= @event.latitude%>, lng: <%= @event.longitude%>},
+            map: map,
+            title: contentString
+        });
+
+        marker.addListener('click', function() {
+            infowindow.open(map, marker);
+        });
+    }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyC9xmXjOmINxQq6EX2xONwQPUzcNM3I1z0&callback=initMap">
+</script>
+
+<style type="text/css">
+  #map { height: 250px;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:left;
+    width: 100%;;
+    }
+</style>
+<div id="map"></div>
+
+
+
+<%= render 'form', event: @event %>

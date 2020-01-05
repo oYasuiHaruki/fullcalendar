@@ -1,0 +1,91 @@
+<% if false %>
+<%= form_with(model: event, local: true) do |form| %>
+  <% if event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+      <ul>
+      <% event.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :event_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :event_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_date %>
+    <%= form.datetime_select :start_date, id: :event_start_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_date %>
+    <%= form.datetime_select :end_date, id: :event_end_date %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<% end %>
+
+<%= form_with(model: event, local: true) do |form| %>
+  <% if event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+      <ul>
+      <% event.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="form-style-3">
+<fieldset>
+<label>From:<%= raw sprintf(
+      form.datetime_select(
+        :start_date,
+        {
+          use_two_digit_numbers: true,
+          date_separator: '%s',
+          datetime_separator: '%s',
+          time_separator: '%s',
+          disabled: true,
+        },# オプション
+      { class: 'date-select' }# htmlオプションを指定する場合は別で指定
+    ),
+    '年 ', '月 ', '日 ', '時 ') + '分 -'# 分 は最後につけ加えられる
+%></label><br>
+<label>
+<label>To:　<%= raw sprintf(
+      form.datetime_select(
+        :end_date,
+        {
+          use_two_digit_numbers: true,
+          date_separator: '%s',
+          datetime_separator: '%s',
+          time_separator: '%s',
+          disabled: true,
+        },# オプション
+      { class: 'date-select' }# htmlオプションを指定する場合は別で指定
+    ),
+    '年 ', '月 ', '日 ', '時 ') + '分'# 分 は最後につけ加えられる
+%></label><br>
+<label for="field1"><span>住所 </span></label>
+<%= form.text_field :title, id: :event_title %>
+<label for="field2"><span>Note </span></label>
+<%= form.text_area :description, id: :event_description %>
+</fieldset>
+<input type="submit" value="更新" />
+</div>
+<% end %>
