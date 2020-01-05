@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  resources :calendar
-  get 'events/diary_index'
+  root 'events#index'
   resources :events
 
   namespace :api, { format: 'json' } do

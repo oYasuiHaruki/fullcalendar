@@ -47,8 +47,6 @@ $(function () {
             //     duration: { days: 4 }
             // }
         }, 
-        // 曜日を日本語表示
-        // dayNamesShort: ['日', '月', '火', '水', '木', '金', '土'],
         listDayFormat: 'YYYY年MM月DD日',
         dayNames: ['日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日'],
         eventLimit: true, 
